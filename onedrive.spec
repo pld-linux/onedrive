@@ -6,6 +6,8 @@ License:	GPL v3
 Source0:	https://github.com/abraunegg/onedrive/archive/v%{version}/%{name}-v%{version}.tar.gz
 # Source0-md5:	18d5f1af56f7e3118e2dd00ad75bc8fa
 URL:		https://github.com/abraunegg/onedrive
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	curl-devel
 BuildRequires:	ldc
 BuildRequires:	libnotify-devel
@@ -26,7 +28,8 @@ sed -i "s|std\.c\.|core\.stdc\.|" src/sqlite.d
 echo %{version} > version
 
 %build
-autoreconf -vf
+%{__aclocal}
+%{__autoconf}
 bash %configure
 export DFLAGS="%{_d_optflags}"
 export PREFIX="%{_prefix}"
