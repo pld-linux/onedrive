@@ -1,7 +1,7 @@
 Summary:	OneDrive Free Client written in D
 Name:		onedrive
 Version:	2.4.13
-Release:	2
+Release:	3
 License:	GPL v3
 Source0:	https://github.com/abraunegg/onedrive/archive/v%{version}/%{name}-v%{version}.tar.gz
 # Source0-md5:	18d5f1af56f7e3118e2dd00ad75bc8fa
@@ -13,6 +13,9 @@ BuildRequires:	ldc
 BuildRequires:	libnotify-devel
 BuildRequires:	sqlite-devel
 BuildRequires:	systemd-devel
+BuildRequires:	rpmbuild(macros) >= 2.011
+Requires(post,preun):	systemd-units >= 1:250.1
+Requires:	systemd-units >= 1:250.1
 ExclusiveArch:	%{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -45,6 +48,12 @@ chmod a-x $RPM_BUILD_ROOT%{_mandir}/man1/%{name}*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post
+%systemd_user_post %{name}.service
+
+%preun
+%systemd_user_preun %{name}.service
 
 %files
 %defattr(644,root,root,755)
