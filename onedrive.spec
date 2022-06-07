@@ -1,7 +1,7 @@
 Summary:	OneDrive Free Client written in D
 Name:		onedrive
 Version:	2.4.13
-Release:	3
+Release:	4
 License:	GPL v3
 Source0:	https://github.com/abraunegg/onedrive/archive/v%{version}/%{name}-v%{version}.tar.gz
 # Source0-md5:	18d5f1af56f7e3118e2dd00ad75bc8fa
